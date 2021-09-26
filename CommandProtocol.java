@@ -10,7 +10,7 @@ public class CommandProtocol {
 	 */
 	public static void processCommand(String cmd, NetworkAccess na, ClientHandler ch)
 	{
-		System.out.println("SERVER receive: " + cmd);
+		//System.out.println("SERVER receive: " + cmd);
 		
 		if (cmd.equals("disconnect")) {
 
@@ -19,10 +19,7 @@ public class CommandProtocol {
 			ch.getServer().removeID(ch.getID());
 			ch.Stop();
 		}
-		//else if (cmd.equals("hello")) {		
-			// -- client is expecting a response
-		//	na.sendString("world!" + "\n", false);
-		//}
+
 		else if (cmd.contains("register")) {
 			String[] parts = cmd.split(";");
 			if(Authenticate.validSimplePassword(parts[2])) {
@@ -110,7 +107,7 @@ public class CommandProtocol {
 				dbc.setLockoutCount(parts[1], 0);
 				String email = dbc.getEmail(parts[1]);
 				//send mail with the password string
-				//SendEmailUsingGMailSMTP.sentMail(email, password);
+				SendEmailUsingGMailSMTP.sendMail(email, password);
 				message = "success";
 			}
 			else {

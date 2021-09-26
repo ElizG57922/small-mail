@@ -64,9 +64,9 @@ public class Client {
 	}
 	public String sendString(String commandString) {
 		// -- send an unrecognized command String to the server and wait for the response
-		System.out.println("CLIENT send:  " + commandString);
+		//System.out.println("CLIENT send:  " + commandString);
 		String replyString = networkaccess.sendString(commandString, true);
-		System.out.println("CLIENT receive: " + replyString);
+		//System.out.println("CLIENT receive: " + replyString);
 		return replyString;
 		
 		// -- disconnect from the server
