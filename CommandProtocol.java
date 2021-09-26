@@ -19,10 +19,7 @@ public class CommandProtocol {
 			ch.getServer().removeID(ch.getID());
 			ch.Stop();
 		}
-		//else if (cmd.equals("hello")) {		
-			// -- client is expecting a response
-		//	na.sendString("world!" + "\n", false);
-		//}
+
 		else if (cmd.contains("register")) {
 			String[] parts = cmd.split(";");
 			if(Authenticate.validSimplePassword(parts[2])) {

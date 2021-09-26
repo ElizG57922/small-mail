@@ -154,13 +154,13 @@ public class Server {
 	/**
 	 * @param args: command line arguments (unused)
 	 */
-	//public static void main (String args[])
-	//{
-		// -- instantiate the server anonymously
-		//    no need to keep a reference to the object since it will run in its own thread
-	//	new Server();		
+	public static void main (String args[])
+	{
+		new ServerGUI();
+		new Server();
+
 		
-	//}
+	}
 
 
 
