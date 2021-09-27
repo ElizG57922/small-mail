@@ -12,8 +12,8 @@ import javax.swing.JTextField;
 
 public class ConnectGUI extends JFrame{
 
-	private int WIDTH = 512;
-	private int HEIGHT = 512;
+	private final int WIDTH = 512;
+	private final int HEIGHT = 512;
 
 	private DisconnectedPanel disconnectedPanel;
 	private Client client;
@@ -31,7 +31,6 @@ public class ConnectGUI extends JFrame{
 		this.cGUI = cGUI;
 
 		disconnectedPanel = new DisconnectedPanel();
-
 
 		this.add(disconnectedPanel, BorderLayout.CENTER);
 

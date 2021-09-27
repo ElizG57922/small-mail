@@ -7,16 +7,14 @@ package network;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 // -- MAKE SURE THE JDBC CONNECTOR JAR IS IN THE BUILD PATH
-//    workspace -> properties -> Java Build Path -> Libraries -> Add External JARs...
 
 // https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html for example SQL statements
-public class DBaseConnection {
 
+public class DBaseConnection {
 	// -- objects to be used for database access
     private Connection conn = null;
     private Statement stmt = null;
@@ -25,9 +23,8 @@ public class DBaseConnection {
     // -- root/admin
     // -- connect to the world database
     // -- this is the connector to the database, default port is 3306
-    //    <<Your schema name here>> is the schema (database) you created using the workbench
     private String userdatabaseURL = "jdbc:mysql://localhost:3306/user_data?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";//useSSL=false";
-    //Data path:   /usr/local/mysql/data/csc335/users.ibd
+    //Data path:   /usr/local/mysql/data/user_data/users.ibd
     
     // -- this is the username/password, created during installation and in MySQL Workbench
     //    When you add a user make sure you give them the appropriate Administrative Roles
@@ -40,7 +37,6 @@ public class DBaseConnection {
 		
 		try {
             // -- make the connection to the database
-			//    performs functionality of SQL: use <<your schema>>;
 			conn = DriverManager.getConnection(userdatabaseURL, user, password);
             
 			// -- These will be used to send queries to the database
@@ -66,8 +62,7 @@ public class DBaseConnection {
 		}
 	}
 	public String insertIntoDatabase(String uname, String pword, String email) {
-        // -- test an insert statement. Note that this will throw an exception if
-        //    the key already exists in the database            
+        // -- adds a new user
         String message = "success";
         try {
       	    String sqlcmd = "INSERT INTO Users (username, password, email) VALUES('" + uname + "', '" + pword + "', '" + email+ "')";
@@ -101,20 +96,18 @@ public class DBaseConnection {
 	public String login(String uname, String pword) {
 		String message = "success";
 			
-			String correctPass = getPass(uname);
+		String correctPass = getPass(uname);
 
-          	if(correctPass.contentEquals(pword)) {
-          		message = "success";
-          		setLoggedInStatus(uname, true);
-          		setLockoutCount(uname, 0);
-        	}
-          	else {
-          		message = "invalidpass";
-          	    int lockoutCount = getLockoutCount(uname);
-          	    setLockoutCount(uname, lockoutCount + 1);
-          	}
-		
-		
+		if(correctPass.contentEquals(pword)) {
+			message = "success";
+			setLoggedInStatus(uname, true);
+			setLockoutCount(uname, 0);
+		}
+		else {
+			message = "invalidpass";
+			int lockoutCount = getLockoutCount(uname);
+			setLockoutCount(uname, lockoutCount + 1);
+		}
 	  	return message;
 	}
 	public String getPass(String uname) {
@@ -164,7 +157,6 @@ public class DBaseConnection {
             rset = stmt.executeQuery(sqlcmd);
             // -- loop through the ResultSet one row at a time
             //    Note that the ResultSet starts at index 1
-          
             while (rset.next()) {
               	count = rset.getInt(4);
             }
@@ -229,6 +221,4 @@ public class DBaseConnection {
 			return isLoggedIn;
 	     }
 	}
-
-
 }

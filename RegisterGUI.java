@@ -12,8 +12,8 @@ import javax.swing.JTextField;
 
 public class RegisterGUI extends JFrame{
 
-	private int WIDTH = 512;
-	private int HEIGHT = 512;
+	private final int WIDTH = 512;
+	private final int HEIGHT = 512;
 
 	private RegisterPanel registerPanel;
 	private Client client;

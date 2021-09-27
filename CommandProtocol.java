@@ -10,10 +10,8 @@ public class CommandProtocol {
 	 */
 	public static void processCommand(String cmd, NetworkAccess na, ClientHandler ch)
 	{
-		//System.out.println("SERVER receive: " + cmd);
-		
-		if (cmd.equals("disconnect")) {
 
+		if (cmd.equals("disconnect")) {
 			// -- no response to the client is necessary
 			na.close();
 			ch.getServer().removeID(ch.getID());
@@ -54,8 +52,7 @@ public class CommandProtocol {
 			dbc.disconnect();
 			na.sendString(message + "\n", false);
 		}
-		
-		
+
 		else if (cmd.contains("logout")) {
 			DBaseConnection dbc = new DBaseConnection();
 			String message;
@@ -94,7 +91,6 @@ public class CommandProtocol {
 			    }
 	    		dbc.disconnect();
 			}
-			
 			na.sendString(message + "\n", false);
 		}
 		

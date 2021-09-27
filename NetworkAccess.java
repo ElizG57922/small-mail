@@ -42,20 +42,15 @@ public class NetworkAccess {
 			//    there are other stream types (Object stream) that can be used
 			datain = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			dataout = new DataOutputStream(socket.getOutputStream());
-			
-		} 
+		}
 		catch (UnknownHostException e) {
-			
 			System.out.println("Host " + ip + " at port " + port + " is unavailable.");
 			System.exit(1);
-			
-		} 
+		}
 		catch (IOException e) {
-			
 			System.out.println("Unable to create I/O streams.");
 			System.exit(1);
 		}
-		
 	}
 
 	/**
@@ -117,7 +112,6 @@ public class NetworkAccess {
 		// -- the protocol is this:
 		//    client sends a \n terminated String to the server
 		//    server receives String, processes it, sends \n terminate String to client
-		//    this is called a "hand-shake" system
 		try {
 			// -- the server only receives String objects that are
 			//    terminated with a newline \n"
@@ -139,14 +133,10 @@ public class NetworkAccess {
 				} while (rtnmsg.equals(""));
 			}						
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 			System.exit(1);
-			
 		}
-		
 		return rtnmsg;
-		
 	}
 	
 	/**
@@ -160,5 +150,4 @@ public class NetworkAccess {
 			System.out.println("close: invalid socket");
 		}
 	}
-
 }

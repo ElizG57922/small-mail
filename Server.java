@@ -58,46 +58,35 @@ public class Server {
 	 */
 	public Server ()
 	{
-		
 		// -- construct the list of active client threads
 		clientconnections = new Vector<ClientHandler>();
 
 		// -- listen for incoming connection requests
 		listen();
-
 	}
 
 	/**
 	 * listen for incoming client connections
-	 * analogous to a telephone operator
-	 * listens for the phone to ring
-	 * routes the incoming call to the requested extension
-	 * goes back to listening for the phone to ring
 	 */
 	private void listen ()
 	{
 		try {
-			System.out.println("Server is running...");
-			
 			// -- open the server socket
 			serversocket = new ServerSocket(PORT);
 			
 			// -- server runs until we manually shut it down
 			while (running) {
-				
-					// -- block until a client comes along (listen for the phone to ring)
-					Socket socket = serversocket.accept();
-					
-					// -- connection accepted, create a peer-to-peer socket
-					//    between the server (thread) and client (route the call to the requested extension)
-					peerconnection(socket);										
+				// -- block until a client comes along (listen for the phone to ring)
+				Socket socket = serversocket.accept();
+
+				// -- connection accepted, create a peer-to-peer socket
+				//    between the server (thread) and client (route the call to the requested extension)
+				peerconnection(socket);
 			}
 		}
 		catch (IOException e) {
-			
 			e.printStackTrace();
 			System.exit(1);
-			
 		}
 	}
 
@@ -123,8 +112,7 @@ public class Server {
 		System.out.println("SERVER: connection received for id " + nextId + "\n");
 		++nextId;
 	}
-	
-		
+
 	/**
 	 * called by a ServerThread when a client is terminated to remove
 	 * the connection from the list
@@ -141,16 +129,11 @@ public class Server {
 				// -- remove it from the active threads list
 				//    the thread will terminate itself
 				clientconnections.remove(i);
-				
-				// -- place some text in the area to let the server operator know
-				//    what is going on
-				System.out.println("SERVER: connection closed for client id " + id + "\n");
 				break;
 			}
 		}
 	}
 
-	
 	/**
 	 * @param args: command line arguments (unused)
 	 */
@@ -158,10 +141,5 @@ public class Server {
 	{
 		new ServerGUI();
 		new Server();
-
-		
 	}
-
-
-
 }

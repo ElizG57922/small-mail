@@ -171,9 +171,6 @@ public class Authenticate {
     			state = -99;
     		}
     	}
-    	
     	return result;
     }
-   
-
 }

@@ -12,8 +12,8 @@ import javax.swing.JTextField;
 
 public class PassRecoverGUI extends JFrame{
 
-	private int WIDTH = 512;
-	private int HEIGHT = 512;
+	private final int WIDTH = 512;
+	private final int HEIGHT = 512;
 
 	private PasswordRecoveryPanel passRecPanel;
 
@@ -37,7 +37,6 @@ public class PassRecoverGUI extends JFrame{
 
 		setVisible(false);
 	}
-
 
 	public class PasswordRecoveryPanel extends JPanel {
 

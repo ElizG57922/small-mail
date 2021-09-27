@@ -24,13 +24,12 @@ import javax.mail.internet.MimeMessage;
 
 public class SendEmailUsingGMailSMTP {
 
-    // -- set the gmail host URL
-    final static private String host = "smtp.gmail.com";
-    final static private String port = "587";
+	// -- set the gmail host URL
+	final static private String host = "smtp.gmail.com";
+	final static private String port = "587";
 
-    // -- You must have a valid gmail username/password pair to use gmail as a SMTP service
-    final static private String gmailusername = "mailserver044@gmail.com"; //"Mail Server Project";
-    final static private String gmailpassword = "admin1967";	
+	final static private String gmailusername = "mailserver044@gmail.com"; //"Mail Server Project";
+	final static private String gmailpassword = "admin1967";
 	
     public static void sendMail(String to, String message) {
         // -- Configurations for the email connection to the Google SMTP server using TLS
@@ -71,9 +70,8 @@ public class SendEmailUsingGMailSMTP {
             
             // -- send the message
             Transport.send(msg);
-            
-            System.out.println("Mail has been sent successfully");
-        } catch (MessagingException e) {
+        }
+        catch (MessagingException e) {
             System.out.println("Unable to send an email" + e);
         }
     }

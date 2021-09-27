@@ -6,14 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class LoggedinGUI extends JFrame{
 
-	private int WIDTH = 512;
-	private int HEIGHT = 512;
+	private final int WIDTH = 512;
+	private final int HEIGHT = 512;
 
 	private LoggedInPanel loggedinPanel;
 	private Client client;
@@ -41,7 +39,6 @@ public class LoggedinGUI extends JFrame{
 	public void setUsername(String name) {
 		username = name;
 	}
-
 
 	public class LoggedInPanel extends JPanel {
 

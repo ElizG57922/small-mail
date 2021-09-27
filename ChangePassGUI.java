@@ -12,8 +12,8 @@ import javax.swing.JTextField;
 
 public class ChangePassGUI extends JFrame{
 
-	private int WIDTH = 512;
-	private int HEIGHT = 512;
+	private final int WIDTH = 512;
+	private final int HEIGHT = 512;
 
 	private ChangePassPanel passChangePanel;
 	private Client client;
@@ -55,7 +55,6 @@ public class ChangePassGUI extends JFrame{
 			prepareButtonHandlers();
 			setLayout(new GridLayout(20, 1, 1, 1));
 
-
 			this.add(new JLabel("Old Password"));
 			this.add(oldPassword);
 			this.add(new JLabel("New Password"));
@@ -89,6 +88,5 @@ public class ChangePassGUI extends JFrame{
 		{
 			return new Dimension(130, 500);
 		}
-
 	}
 }

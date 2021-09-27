@@ -3,7 +3,6 @@ package network;
 import java.io.IOException;
 import java.net.Socket;
 
-
 public class ClientHandler extends Thread {
 	
 	/**
@@ -79,11 +78,8 @@ public class ClientHandler extends Thread {
 	{
 		return server;
 	}
-	
-	// -- similar to a main() function in that it is the entry point of
-	//    the thread
+
 	public void run () {
-		
 		// -- server thread runs until the client terminates the connection
 		while (go) {
 			try {
@@ -100,22 +96,12 @@ public class ClientHandler extends Thread {
 				//    close the socket, remove this thread object from the
 				//    server's active client thread list, and terminate the thread
 				//    this is the server side "command processor"
-				//    you will need to define a communication protocol (language) to be used
-				//    between the client and the server
-				//    e.g. client sends "LOGIN;<username>;<password>\n"
-				//         server parses it to "LOGIN", "<username>", "<password>" and performs login function
-				//         server responds with "SUCCESS\n"
-				//    this is where all the server side Use Cases will be handled
-				
 				CommandProtocol.processCommand(cmd, networkaccess, this);
 			} 
 			catch (IOException e) {
-				
 				e.printStackTrace();
 				go = false;
-				
 			}
-			
 		}
 	}
 }
